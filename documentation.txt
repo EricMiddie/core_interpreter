@@ -1,0 +1,36 @@
+Description:
+
+This tokenizer is built according to the write up provided. I tried to mimic regular expressions as best as I could 
+as we weren't allowed to actually use regular expressions. I defined the concrete tokens of the core language at the 
+top of the file to compare against later when tokenizing a line. When tokenizing a line, it first removes any leading 
+white space, then checks if the rest of the string matches any of the known tokens (minus Identifiers and Integers).
+
+If a token is matched within the line, the token is added to the tokens value is added to the tokens, along with the
+matched string (this is used for the Identifiers and Integers, as well as errors). The index within the line is then
+increased by the length of the token and it repeats until the line is empty or an error is encountered.
+
+After tokenizing a line, the tokens are output. Once the cursor moves to the end of the token stream, tokenizeLine is
+called again. If no more tokens are returned, then the 33 token is appended and the program terminates.
+
+If an error is encountered, 34 is appended to the token stream along with the line that the error was encountered on.
+This uses the same logic as storing the identifier name or the integer value. If the main method runs into a 34 token,
+the error message is printed and the tokenizing stops.
+
+User Manual: 
+
+To run the tokenizer, put the file that you would like to tokenize into the folder containing tokenize.py. Then run the
+command given in the readme with your file name.
+
+Testing: 
+
+There are no known bugs to my knowledge. I tested this against the following errors/boundary cases
+- Improper identifiers (aBC, 12A, Aa, aA, a)
+- Completely blank lines
+- Tabs in between various tokens
+- Starting whitespace
+- Ending white space
+- Leading 0 Integers
+- Improper reserved tokens(could be identifier or error, "beGin", "BEGIN")
+- Invalid special characters ('.', '~')
+- Differentiating between == and =, ! and !=, > and >=, < and <=
+- Intended behavior of tokenizing '!==' into '!=' and '=' (25, 14) as it takes the biggest match first.
