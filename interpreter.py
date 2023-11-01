@@ -34,7 +34,7 @@ class Interpreter:
         from classes.prog import Prog
         self.program = Prog(self.tokenizer)
         self.program.ParseProg()
-        # print("Not implementted")
+        print("Program Parsed")
     def Print():
         print("Not implemented")
     def Exec():

@@ -21,6 +21,13 @@ class Assign:
         self.tokenizer.skipToken()
 
         self.exp = Exp(self.tokenizer)
+        self.exp.ParseExp()
+        
+        # check and skip the ;
+        if self.tokenizer.getToken() != 12:
+            print("Parse Error: Assignment must terminate with a ;")
+            exit()
+        self.tokenizer.skipToken()
 
 
         
