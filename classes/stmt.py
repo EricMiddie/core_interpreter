@@ -4,8 +4,12 @@ class Stmt:
         self.content = content
 
 class StmtSeq:
-    def __init__(self):
+    def __init__(self, tokenizer):
         self.stmts = []
+        self.tokenizer = tokenizer
 
     def add_stmt(self, stmt):
         self.stmts.append(stmt)
+
+    def ParseStmtSeq(self):
+        print(self.tokenizer.getToken())

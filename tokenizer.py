@@ -33,7 +33,7 @@ TOKENS = {
     "NOT_EQUALS": (25, "!="),
     "DOUBLE_EQUALS": (26, "=="),
     "LESS_THAN": (27, "<"),
-    "GREATER_THAN": (28, ">"),
+    "GREATER_THAN": (28, ">"), 
     "LESS_THAN_EQUALS": (29, "<="),
     "GREATER_THAN_EQUALS": (30, ">="),
     # "INTEGER": (31)
@@ -143,6 +143,8 @@ class Tokenizer:
 
     def skipToken(self):
         # Increment the cursor if there are more tokens
+        print("Skipping: ")
+        print(self.getToken())
         if self.cursor_index < len(self.tokens):
             self.cursor_index += 1
 

@@ -8,18 +8,34 @@ class Prog:
         self.stmt_seq = None
 
     def ParseProg(self):
-        if(self.tokenizer.getToken() != 1):
-            print("Expected 'program' to start the file.")
-            exit()
-        # skip the "program"
-        self.tokenizer.skipToken()
-
+        print("Parsing Program")
+        # init the child nodes
         self.decl_seq = DeclSeq(self.tokenizer)
         self.stmt_seq = StmtSeq(self.tokenizer)
 
-        print(self.tokenizer.getToken())
-        # self.decl_seq.ParseDeclSeq()
-        # self.stmt_seq.parseDeclSeq()
+        # check and skip the "program"
+        if(self.tokenizer.getToken() != 1):
+            print("Expected 'program' to start the file.")
+            exit()
+        self.tokenizer.skipToken()
+
+        # parse the decalration sequence
+        self.decl_seq.ParseDeclSeq()
+
+        # check and skip the "begin"
+        if self.tokenizer.getToken() != 2: 
+            print("Error: expected begin")
+            exit()
+        self.tokenizer.skipToken()
+
+        # parse the statement sequence
+        self.stmt_seq.ParseStmtSeq()
+
+        # check and skip the "end"
+        if self.tokenizer.getToken() != 3: 
+            print("Error: expected end")
+            exit()
+        self.tokenizer.skipToken()
 
 
 
