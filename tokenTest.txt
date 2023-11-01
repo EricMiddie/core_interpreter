@@ -1,5 +1,5 @@
 program 
-    int X; 
+    int X; Y; 
 begin 
     X=25; 
     write X; 

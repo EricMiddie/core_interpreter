@@ -41,7 +41,7 @@ class DeclSeq:
                 exit()
         self.decls.append(initDecl)
         initDecl.ParseDecl()
-        while self.tokenizer.getToken == 4:
+        while self.tokenizer.getToken() == 4:
             initDecl = Decl(self.tokenizer)
             self.decls.append(initDecl)
             initDecl.ParseDecl()

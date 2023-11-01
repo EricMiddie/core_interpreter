@@ -24,7 +24,7 @@ class Prog:
 
         # check and skip the "begin"
         if self.tokenizer.getToken() != 2: 
-            print("Error: expected begin")
+            print("Error: expected begin (Check your variable declarations)")
             exit()
         self.tokenizer.skipToken()
 
