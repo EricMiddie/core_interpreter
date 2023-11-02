@@ -1,4 +1,5 @@
 from classes.exp import Exp
+from classes.iden import Id
 
 class Op:
     def __init__(self, tokenizer):
@@ -21,7 +22,12 @@ class Op:
         elif currToken == 32:
             # store and skip over the identifier
             self.type = 32
-            self.value = self.tokenizer.idName()
+            name = self.tokenizer.idName()
+            self.value = name
+            # check if Id has been delcared
+            if not Id.IdDeclared(name):
+                print("Parse Error: undeclared variable ("+name+")")
+                exit()
             self.tokenizer.skipToken()
         elif currToken == 20:
             # store and parse the expression

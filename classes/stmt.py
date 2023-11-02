@@ -1,4 +1,5 @@
 from classes.assign import Assign
+from classes.If import If
 
 class Stmt:
     def __init__(self, tokenizer):
@@ -20,6 +21,8 @@ class Stmt:
             self.value.ParseAssign()
         elif curToken == 5:
             print("Parse If")
+            self.value = If(self.tokenizer)
+            self.value.ParseIf()
         elif curToken == 9:
             print("Parse Loop")
         elif curToken == 10: 

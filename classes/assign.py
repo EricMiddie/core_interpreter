@@ -1,4 +1,5 @@
 from classes.exp import Exp
+from classes.iden import Id
 
 class Assign:
     def __init__(self, tokenizer):
@@ -14,6 +15,9 @@ class Assign:
 
         # skip the name and check for =. Skip if it is there
         name = self.tokenizer.idName()
+        if not Id.IdDeclared(name):
+            print("Parse Error: Attempted assign to undeclared id ("+name+")")
+            exit()
         self.tokenizer.skipToken()
         if self.tokenizer.getToken() != 14:
             print("Parse Error: Expected '=' after ID  to be assigned to")

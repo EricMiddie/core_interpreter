@@ -13,6 +13,15 @@ class Id:
         Id.ids.append({name: None})
         tokenizer.skipToken()
 
+    @staticmethod
+    def IdDeclared(name):
+        # Check to make sure the variable isn't declared already
+        for id_dict in Id.ids:
+            if name in id_dict:
+                return True
+
+        return False
+
 
 class IdList:
     def __init__(self, tokenizer):

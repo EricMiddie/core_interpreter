@@ -17,8 +17,3 @@ class Fac:
             self.tokenizer.skipToken()
             self.fac = Fac(self.tokenizer)
             self.fac.ParseFac()
-
-class CompOp:
-    def __init__(self, operator):
-        # Choices: !=, ==, <, >, <=, >=
-        self.operator = operator

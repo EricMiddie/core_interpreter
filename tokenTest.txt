@@ -1,5 +1,6 @@
 program 
-    int X; 
+    int X, Y; 
 begin 
-    X=25; 
+    X=X;
+    Y=25; 
 end
