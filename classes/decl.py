@@ -6,8 +6,8 @@ class Decl:
         self.tokenizer = tokenizer
 
     def ParseDecl(self):
-        print("Parsing Declaration")
-        self.id_list = IdList(tokenizer=self.tokenizer)
+        # print("Parsing Declaration")
+        self.id_list = IdList(self.tokenizer, True)
         # check and skip the "int"
         if self.tokenizer.getToken() != 4:
             print("Error: expected int at start of declaration")
@@ -19,7 +19,7 @@ class Decl:
 
         # check and skip the ;
         if self.tokenizer.getToken() != 12:
-            print("Error: Expected ; after ID list")
+            print("Parse Error: Expected ; after ID list")
             exit()
         self.tokenizer.skipToken()
          
@@ -33,7 +33,7 @@ class DeclSeq:
 
 
     def ParseDeclSeq(self):
-        print("Parsing Declaration Sequence")
+        # print("Parsing Declaration Sequence")
         initDecl = Decl(self.tokenizer)
         # Make sure that it starts with an "int"
         if self.tokenizer.getToken() != 4:

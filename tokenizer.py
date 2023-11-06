@@ -143,8 +143,8 @@ class Tokenizer:
 
     def skipToken(self):
         # Increment the cursor if there are more tokens
-        print("Skipping: ")
-        print(self.getToken())
+        # print("Skipping: ")
+        # print(self.getToken())
         if self.cursor_index < len(self.tokens):
             self.cursor_index += 1
 

@@ -9,6 +9,7 @@ class Comp:
         self.right_op = None
 
     def ParseComp(self):
+        # print("Parsing Comp")
         self.left_op = Op(self.tokenizer)
         self.comp_op = CompOp(self.tokenizer)
         self.right_op = Op(self.tokenizer)

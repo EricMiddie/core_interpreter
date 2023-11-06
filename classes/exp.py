@@ -8,7 +8,6 @@ class Exp:
         self.exp = None
 
     def ParseExp(self):
-        print("Parsing Exp")
         from classes.fac import Fac
         self.fac = Fac(self.tokenizer)
         self.fac.ParseFac()

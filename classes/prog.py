@@ -8,7 +8,7 @@ class Prog:
         self.stmt_seq = None
 
     def ParseProg(self):
-        print("Parsing Program")
+        # print("Parsing Program")
         # init the child nodes
         self.decl_seq = DeclSeq(self.tokenizer)
         self.stmt_seq = StmtSeq(self.tokenizer)
@@ -33,7 +33,7 @@ class Prog:
 
         # check and skip the "end"
         if self.tokenizer.getToken() != 3: 
-            print("Error: expected end")
+            print("Parse Error: Expected program to terminate in 'end'")
             exit()
         self.tokenizer.skipToken()
 
