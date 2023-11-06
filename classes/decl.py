@@ -29,20 +29,19 @@ class Decl:
 class DeclSeq:
     def __init__(self, tokenizer):
         self.tokenizer = tokenizer
-        self.decls = []
+        self.decl = None
+        self.decl_seq = None
 
 
     def ParseDeclSeq(self):
         # print("Parsing Declaration Sequence")
-        initDecl = Decl(self.tokenizer)
+        self.decl = Decl(self.tokenizer)
         # Make sure that it starts with an "int"
         if self.tokenizer.getToken() != 4:
                 print("Error: Expected int to start declaration sequence")
                 exit()
-        self.decls.append(initDecl)
-        initDecl.ParseDecl()
-        while self.tokenizer.getToken() == 4:
-            initDecl = Decl(self.tokenizer)
-            self.decls.append(initDecl)
-            initDecl.ParseDecl()
+        self.decl.ParseDecl()
+        if self.tokenizer.getToken() == 4:
+            self.decl_seq = DeclSeq(self.tokenizer)
+            self.decl_seq.ParseDeclSeq()
 
