@@ -20,9 +20,16 @@ class In:
             exit()
         self.tokenizer.skipToken()
 
+    def PrintIn(self, currentTab):
+        tabs = '\t' * currentTab
+        print(f"{tabs}read ", end='')
+        self.id_list.PrintIdList(currentTab, True)
+        print(';')
+
 class Out:
     def __init__(self, tokenizer):
         self.tokenizer = tokenizer
+        self.id_list = None
 
     def ParseOut(self):
         if(self.tokenizer.getToken() != 11):
@@ -37,3 +44,9 @@ class Out:
             print("Parse Error: Expected OUT to end with ;")
             exit()
         self.tokenizer.skipToken()
+
+    def PrintOut(self, currentTab):
+        tabs = '\t' * currentTab
+        print(f"{tabs}write ", end='')
+        self.id_list.PrintIdList(currentTab, True)
+        print(';')

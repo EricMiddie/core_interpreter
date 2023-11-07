@@ -38,6 +38,15 @@ class Prog:
         self.tokenizer.skipToken()
 
 
+    def PrintProg(self, currentTab):
+        print("program")
+        self.decl_seq.PrintDeclSeq(currentTab + 1)
+        print("begin")
+        self.stmt_seq.PrintStmtSeq(currentTab + 1)
+        print("end")
+
+
+
 
 
 

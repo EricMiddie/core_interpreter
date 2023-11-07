@@ -18,7 +18,6 @@ class If:
         
         self.cond = Cond(self.tokenizer)
         self.stmt_seq_then = StmtSeq(self.tokenizer)
-        self.stmt_seq_else = StmtSeq(self.tokenizer)
 
         self.cond.ParseCond()
 
@@ -38,7 +37,9 @@ class If:
             if self.tokenizer.getToken() != 12:
                 print("Parse Error: Expected ; after 'end'")
                 exit()
+            self.tokenizer.skipToken()
         else:   
+            self.stmt_seq_else = StmtSeq(self.tokenizer)
             # We must be in the alt
             # Check for and skip the 'else'
             if self.tokenizer.getToken() != 7:
@@ -58,3 +59,15 @@ class If:
                 print("Parse Error: Expected ';' after 'end'.")
                 exit()
             self.tokenizer.skipToken()
+
+    def PrintIf(self, currentTab):
+        tabs = '\t' * currentTab
+        print(f"{tabs}if ", end='')
+        self.cond.PrintCond(0)
+        # We want it to go to the next line here
+        print(" then") 
+        self.stmt_seq_then.PrintStmtSeq(currentTab + 1)
+        if self.stmt_seq_else is not None:
+            print(f"{tabs}else")
+            self.stmt_seq_else.PrintStmtSeq(currentTab + 1)
+        print(f"{tabs}end;")

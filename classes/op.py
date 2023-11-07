@@ -43,3 +43,16 @@ class Op:
                 print("Parse Error: Expected closing )")
                 exit()
             self.tokenizer.skipToken()
+
+
+    def PrintOp(self, currentTab, inLine):
+        tabs = '\t' * currentTab
+        if self.type in [31, 32]:
+            # We print the "int" or ID
+            print(f"{tabs}{self.value}", end='' if inLine else '\n')
+        elif self.type == 20:
+            # We print the (exp)
+            print(f"{tabs}(", end='' if inLine else '\n')
+            # Exp are printed inline by default
+            self.value.PrintExp(0)
+            print(")", end='' if inLine else '\n')

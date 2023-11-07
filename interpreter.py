@@ -35,9 +35,10 @@ class Interpreter:
         self.program = Prog(self.tokenizer)
         self.program.ParseProg()
         print("Program Parsed")
-    def Print():
+    def Print(self):
+        self.program.PrintProg(0)
         print("Not implemented")
-    def Exec():
+    def Exec(self):
         print("Not implemented")
         
 
@@ -60,22 +61,7 @@ def main():
 
     interp = Interpreter(filename=filename, datastream=datastream)
     interp.Parse()
-
-    # print(f"Tokenizing file: {filename}")
-    # tokenizer = Tokenizer(filename)
-
-    # while True:
-    #     token = tokenizer.getToken()
-    #     print(token)
-    #     if token in [33, 34]:
-    #         if token == 34:
-    #             print(tokenizer.get_error())
-    #         else:
-    #             print("End of file reached.")
-    #         break
-    #     tokenizer.skipToken()
-
-    # tokenizer.file.close()
+    interp.Print()
 
 if __name__ == "__main__":
     main()

@@ -22,6 +22,13 @@ class Decl:
             print("Parse Error: Expected ; after ID list")
             exit()
         self.tokenizer.skipToken()
+
+    def PrintDecl(self, currentTab):
+        tabs = '\t' * currentTab
+        print(f"{tabs}int", end=' ')
+        self.id_list.PrintIdList(0, True)
+        print(";")
+
          
         
 
@@ -44,4 +51,9 @@ class DeclSeq:
         if self.tokenizer.getToken() == 4:
             self.decl_seq = DeclSeq(self.tokenizer)
             self.decl_seq.ParseDeclSeq()
+
+    def PrintDeclSeq(self, currentTab):
+        self.decl.PrintDecl(currentTab)
+        if self.decl_seq is not None:
+            self.decl_seq.PrintDeclSeq(currentTab)
 

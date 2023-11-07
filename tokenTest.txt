@@ -1,12 +1,11 @@
-program 
-    int X, Y; 
-    int Z;
+program  
+    int Z, Y;
 begin 
-    X=X;
-    Y=25; 
-    Z = 0;
-    while (Z < 5) loop
-        write Z;
-        Z = X+4;
+    if (Z<Y) then
+        Y = Z;
+    end;
+    while (Y>Z) loop
+        write Y;
+        Y = Y - 1;
     end;
 end

@@ -18,6 +18,7 @@ class Assign:
         if not Id.IdDeclared(name):
             print("Parse Error: Attempted assign to undeclared id ("+name+")")
             exit()
+        self.id = name
         self.tokenizer.skipToken()
         if self.tokenizer.getToken() != 14:
             print("Parse Error: Expected '=' after ID  to be assigned to")
@@ -32,6 +33,12 @@ class Assign:
             print("Parse Error: Assignment must terminate with a ;")
             exit()
         self.tokenizer.skipToken()
+
+    def PrintAssign(self, currentTab):
+        tabs = '\t' * currentTab
+        print(f"{tabs}{self.id} = ", end='')
+        self.exp.PrintExp(0)
+        print(";")
 
 
         

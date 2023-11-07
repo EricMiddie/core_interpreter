@@ -40,27 +40,32 @@ class IdList:
     def __init__(self, tokenizer, is_decl):
         self.tokenizer = tokenizer
         self.is_decl = is_decl
+        self.id = None
+        self.id_list = None
 
     def ParseIDList(self):
         if self.tokenizer.getToken() != 32:
-            print("Parse Error: Expected identifier, no IDs specified")
+            print("Parse Error: Expected identifier, no ID specified")
             exit()
         if self.is_decl:
+            self.id = self.tokenizer.idName()
             Id.ParseID1(self.tokenizer)
         else:
+            self.id = self.tokenizer.idName()
             Id.ParseID2(self.tokenizer)
 
-        # repeat while there is still a comma separated list
-        while(self.tokenizer.getToken() == 13):
-            self.tokenizer.skipToken()
-            if self.tokenizer.getToken() != 32:
-                print("Parse Error: Expected identifier after comma")
-                exit()
+        # There is a comma separated list
+        if self.tokenizer.getToken() == 13:
             # skip the comma
-            if self.is_decl:
-                Id.ParseID1(self.tokenizer)
-            else:
-                Id.ParseID2(self.tokenizer)
+            self.tokenizer.skipToken()
+            self.id_list = IdList(self.tokenizer, self.is_decl)
+            self.id_list.ParseIDList()
+
+    def PrintIdList(self, currentTab, inLine):
+        print(self.id, end= ('' if inLine else '\n'))
+        if self.id_list is not None:
+            print(', ', end='')
+            self.id_list.PrintIdList(0, inLine)
             
             
         

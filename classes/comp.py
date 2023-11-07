@@ -29,3 +29,12 @@ class Comp:
             print("Parse Error: Expected closing )")
             exit()
         self.tokenizer.skipToken()
+
+    def PrintComp(self):
+        # Will only print in line
+        print("(", end='')
+        self.left_op.PrintOp(0, True)
+        self.comp_op.PrintCompOp(0)
+        self.right_op.PrintOp(0, True)
+        print(")", end='')
+        

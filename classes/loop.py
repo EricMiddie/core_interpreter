@@ -36,4 +36,13 @@ class Loop:
             exit()
         self.tokenizer.skipToken()
 
+    def PrintLoop(self, currentTab):
+        tabs = '\t' * currentTab
+        print(f"{tabs}while ", end='')
+        self.cond.PrintCond(0)
+        # We want it to go to the next line here
+        print(" loop") 
+        self.stmt_seq.PrintStmtSeq(currentTab + 1)
+        print(f"{tabs}end;")
+
     

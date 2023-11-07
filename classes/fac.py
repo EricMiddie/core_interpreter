@@ -17,3 +17,9 @@ class Fac:
             self.tokenizer.skipToken()
             self.fac = Fac(self.tokenizer)
             self.fac.ParseFac()
+
+    def PrintFac(self, currenTab, inLine):
+        self.op.PrintOp(currenTab, inLine)
+        if self.fac is not None:
+            print(" * ", end='' if inLine else '\n')
+            self.fac.PrintFac(currenTab, inLine)
