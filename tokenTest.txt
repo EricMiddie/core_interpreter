@@ -3,7 +3,7 @@ program
     int X;
 begin 
     Y = 0;
-    Z = 5;
+    read Z;
     while (Z > Y) loop
         if (Z != 3) then
             write Z;

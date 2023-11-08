@@ -92,7 +92,7 @@ class IdList:
 
     def ExecIdListIn(self, datapoints):
         if(len(datapoints) <= 0):
-            print("Execution Error: Not enough input datapoints to assign to ids")
+            print(f"Execution Error: Not enough input datapoints to assign to id ({self.id})")
             exit()
         Id.AssignIdValue(self.id, datapoints[0])
         datapoints.pop(0)

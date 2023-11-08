@@ -27,7 +27,7 @@ class In:
         print(';')
 
     def ExecIn(self, datapoints):
-        self.id_list.ExecIdList(datapoints)
+        self.id_list.ExecIdListIn(datapoints)
 
 class Out:
     def __init__(self, tokenizer):
