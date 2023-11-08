@@ -8,7 +8,6 @@ class Prog:
         self.stmt_seq = None
 
     def ParseProg(self):
-        # print("Parsing Program")
         # init the child nodes
         self.decl_seq = DeclSeq(self.tokenizer)
         self.stmt_seq = StmtSeq(self.tokenizer)
@@ -44,6 +43,10 @@ class Prog:
         print("begin")
         self.stmt_seq.PrintStmtSeq(currentTab + 1)
         print("end")
+
+    def ExecProg(self, datapoints):
+        self.decl_seq.ExecDeclSeq(datapoints)
+        self.stmt_seq.ExecStmtSeq(datapoints)
 
 
 

@@ -56,3 +56,11 @@ class Op:
             # Exp are printed inline by default
             self.value.PrintExp(0)
             print(")", end='' if inLine else '\n')
+
+    def EvalOp(self, datapoints):
+        if self.type == 31:
+            return int(self.value)
+        elif self.type == 32:
+            return int(Id.GetIdValue(self.value))
+        elif self.type == 20:
+            return self.value.ExecExp(datapoints)

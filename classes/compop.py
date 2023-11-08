@@ -16,3 +16,6 @@ class CompOp:
     def PrintCompOp(self, currentTab):
         tabs = '\t' * currentTab
         print(f"{tabs} {self.string_operator} ", end='')
+
+    def EvalCompOp(self):
+        return self.operator

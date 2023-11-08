@@ -71,3 +71,9 @@ class If:
             print(f"{tabs}else")
             self.stmt_seq_else.PrintStmtSeq(currentTab + 1)
         print(f"{tabs}end;")
+
+    def ExecIf(self, datapoints):
+        if self.cond.EvalCond(datapoints):
+            self.stmt_seq_then.ExecStmtSeq(datapoints)
+        elif self.stmt_seq_else is not None:
+            self.stmt_seq_else.ExecStmtSeq(datapoints)

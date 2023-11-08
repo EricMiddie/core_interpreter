@@ -63,3 +63,16 @@ class Cond:
             print(f"{tabs}!", end='')
             self.cond1.PrintCond(0)
             print(")", end='')
+
+    def EvalCond(self, datapoints):
+        if self.comp is not None:
+            return self.comp.EvalComp(datapoints)
+        elif self.cond2 is not None:
+            cond1Value = self.cond1.EvalCond(datapoints)
+            cond2Value = self.cond2.EvalCond(datapoints)
+            if self.type == "&&":
+                return (cond1Value and cond2Value)
+            elif self.type == "||":
+                return (cond1Value or cond2Value)
+        else:
+            return (not self.cond1.EvalCond(datapoints))

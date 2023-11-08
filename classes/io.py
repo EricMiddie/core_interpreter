@@ -26,6 +26,9 @@ class In:
         self.id_list.PrintIdList(currentTab, True)
         print(';')
 
+    def ExecIn(self, datapoints):
+        self.id_list.ExecIdList(datapoints)
+
 class Out:
     def __init__(self, tokenizer):
         self.tokenizer = tokenizer
@@ -50,3 +53,6 @@ class Out:
         print(f"{tabs}write ", end='')
         self.id_list.PrintIdList(currentTab, True)
         print(';')
+
+    def ExecOut(self, datapoints):
+        self.id_list.ExecIdListOut(datapoints)

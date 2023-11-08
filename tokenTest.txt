@@ -1,11 +1,15 @@
 program  
     int Z, Y;
+    int X;
 begin 
-    if (Z<Y) then
-        Y = Z;
-    end;
-    while (Y>Z) loop
-        write Y;
-        Y = Y - 1;
+    Y = 0;
+    Z = 5;
+    while (Z > Y) loop
+        if (Z != 3) then
+            write Z;
+        else
+            write X;
+        end;
+        Z = Z-1;
     end;
 end

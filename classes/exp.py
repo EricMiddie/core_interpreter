@@ -26,3 +26,18 @@ class Exp:
         if self.type is not None:
             print(str(self.type), end='')
             self.exp.PrintExp(0)
+
+    def ExecExp(self, datapoints):
+        facValue = self.fac.ExecFac(datapoints)
+        if self.type is not None:
+            expValue = self.exp.ExecExp(datapoints)
+            if self.type == "+":
+                return facValue + expValue
+            elif self.type == "-":
+                return facValue - expValue
+            else:
+                # We should never get this because Parsing should only allow + or -
+                print("Execution Error: Exp type unsupported")
+                exit()
+        else:
+            return facValue

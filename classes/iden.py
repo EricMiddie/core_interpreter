@@ -1,25 +1,21 @@
 class Id:
-    ids = []
-
+    __ids = {}
     @staticmethod
     def ParseID1(tokenizer):
         name = tokenizer.idName()
         # Check to make sure the variable isn't declared already
-        for id_dict in Id.ids:
-            if name in id_dict:
-                print("Parse Error: Variable already declared (" + name + ")")
-                exit()
+        if name in Id.__ids:
+            print("Parse Error: Variable already declared (" + name + ")")
+            exit()
         # Declare the variable as uninitialized
-        Id.ids.append({name: None})
+        Id.__ids[name] = None
         tokenizer.skipToken()
 
+    @staticmethod
     def ParseID2(tokenizer):
         name = tokenizer.idName()
-        is_declared = False
         # Check to make sure the variable isn't declared already
-        for id_dict in Id.ids:
-            if name in id_dict:
-                is_declared = True
+        is_declared =  name in Id.__ids
         # Declare the variable as uninitialized
         if not is_declared: 
             print("Parse Error: Variable not declared ("+name+")")
@@ -29,11 +25,32 @@ class Id:
     @staticmethod
     def IdDeclared(name):
         # Check to make sure the variable isn't declared already
-        for id_dict in Id.ids:
-            if name in id_dict:
-                return True
+        return name in Id.__ids
 
-        return False
+    
+    @staticmethod
+    def ExecDeclId(name):
+        # just verify that it's uninitialized
+        # this is redundant from Parsing
+        Id.__ids[name] = None
+
+    @staticmethod
+    def AssignIdValue(name, value):
+        Id.__ids[name] = value
+
+    @staticmethod
+    def IdDefined(name):
+        return False if Id.__ids[name] == None else True
+
+    @staticmethod
+    def GetIdValue(name):
+        if not Id.IdDefined(name):
+            print("Execution Error: Variable undefined ("+name+")")
+            exit()
+        return Id.__ids[name]
+    
+    def GetStringIdValue(name):
+        return "undefined" if not Id.IdDefined(name) else str(Id.__ids[name])
 
 
 class IdList:
@@ -66,6 +83,27 @@ class IdList:
         if self.id_list is not None:
             print(', ', end='')
             self.id_list.PrintIdList(0, inLine)
+
+    def ExecIdListDecl(self, datapoints):
+        Id.ExecDeclId(self.id)
+
+        if self.id_list is not None:
+            self.id_list.ExecIdListDecl(datapoints)
+
+    def ExecIdListIn(self, datapoints):
+        if(len(datapoints) <= 0):
+            print("Execution Error: Not enough input datapoints to assign to ids")
+            exit()
+        Id.AssignIdValue(self.id, datapoints[0])
+        datapoints.pop(0)
+        if self.id_list is not None:
+            self.id_list.ExecIdListIn(datapoints)
+
+    def ExecIdListOut(self, datapoints):
+        print(f"{self.id} = {Id.GetStringIdValue(self.id)}")
+        if self.id_list is not None:
+            self.id_list.ExecIdListOut(datapoints)
+
             
             
         

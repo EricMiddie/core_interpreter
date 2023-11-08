@@ -37,10 +37,8 @@ class Interpreter:
         print("Program Parsed")
     def Print(self):
         self.program.PrintProg(0)
-        print("Not implemented")
     def Exec(self):
-        print("Not implemented")
-        
+        self.program.ExecProg(self.datapoints)
 
 def main():
     if len(sys.argv) != 3:
@@ -61,7 +59,8 @@ def main():
 
     interp = Interpreter(filename=filename, datastream=datastream)
     interp.Parse()
-    interp.Print()
+    # interp.Print()
+    interp.Exec()
 
 if __name__ == "__main__":
     main()

@@ -45,4 +45,8 @@ class Loop:
         self.stmt_seq.PrintStmtSeq(currentTab + 1)
         print(f"{tabs}end;")
 
+    def ExecLoop(self, datapoints):
+        while self.cond.EvalCond(datapoints):
+            self.stmt_seq.ExecStmtSeq(datapoints)
+
     

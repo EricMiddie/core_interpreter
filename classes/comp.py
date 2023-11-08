@@ -37,4 +37,27 @@ class Comp:
         self.comp_op.PrintCompOp(0)
         self.right_op.PrintOp(0, True)
         print(")", end='')
+
+    def EvalComp(self, datapoints):
+        leftVal = self.left_op.EvalOp(datapoints)
+        comp = self.comp_op.EvalCompOp()
+        rightVal = self.right_op.EvalOp(datapoints)
+
+        if comp == 25:
+            return leftVal != rightVal
+        elif comp == 26:
+            return leftVal == rightVal
+        elif comp == 27:
+            return leftVal < rightVal
+        elif comp == 28:
+            return leftVal > rightVal
+        elif comp == 29:
+            return leftVal <= rightVal
+        elif comp == 30:
+            return leftVal >= rightVal
+        else:
+            # Should never hit this
+            print("Execution Error: Invalid Comparator provided")
+            print(comp)
+            exit()
         

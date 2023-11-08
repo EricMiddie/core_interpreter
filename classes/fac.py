@@ -23,3 +23,11 @@ class Fac:
         if self.fac is not None:
             print(" * ", end='' if inLine else '\n')
             self.fac.PrintFac(currenTab, inLine)
+
+    def ExecFac(self, datapoints):
+        opValue = self.op.EvalOp(datapoints)
+        if self.fac is not None:
+            facValue = self.fac.ExecFac(datapoints)
+            return opValue * facValue
+        else:
+            return opValue

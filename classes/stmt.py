@@ -44,6 +44,18 @@ class Stmt:
         elif type(self.value) is Out:
             self.value.PrintOut(currentTab)
 
+    def ExecStmt(self, datapoints):
+        if type(self.value) is Assign:
+            self.value.ExecAssign(datapoints)
+        elif type(self.value) is If:
+            self.value.ExecIf(datapoints)
+        elif type(self.value) is Loop:
+            self.value.ExecLoop(datapoints)
+        elif type(self.value) is In:
+            self.value.ExecIn(datapoints)
+        elif type(self.value) is Out:
+            self.value.ExecOut(datapoints)
+
         
 
 class StmtSeq:
@@ -68,3 +80,8 @@ class StmtSeq:
         self.stmt.PrintStmt(currentTab)
         if self.stmt_seq is not None:
             self.stmt_seq.PrintStmtSeq(currentTab)
+
+    def ExecStmtSeq(self, datapoints):
+        self.stmt.ExecStmt(datapoints)
+        if self.stmt_seq is not None:
+            self.stmt_seq.ExecStmtSeq(datapoints)

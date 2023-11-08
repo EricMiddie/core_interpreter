@@ -40,5 +40,8 @@ class Assign:
         self.exp.PrintExp(0)
         print(";")
 
+    def ExecAssign(self, datapoints):
+        Id.AssignIdValue(self.id, self.exp.ExecExp(datapoints))
+
 
         

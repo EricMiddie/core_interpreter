@@ -29,6 +29,9 @@ class Decl:
         self.id_list.PrintIdList(0, True)
         print(";")
 
+    def ExecDecl(self, datapoints):
+        self.id_list.ExecIdListDecl(datapoints)
+
          
         
 
@@ -56,4 +59,9 @@ class DeclSeq:
         self.decl.PrintDecl(currentTab)
         if self.decl_seq is not None:
             self.decl_seq.PrintDeclSeq(currentTab)
+
+    def ExecDeclSeq(self, datapoints):
+        self.decl.ExecDecl(datapoints)
+        if self.decl_seq is not None:
+            self.decl_seq.ExecDeclSeq(datapoints)
 
