@@ -27,14 +27,12 @@ class Interpreter:
             lines = file.readlines()
         self.datapoints = [line.strip() for line in lines]
 
-        print("Init Tokenizer")
         self.tokenizer = Tokenizer(filename=self.filename)
 
     def Parse(self):
         from classes.prog import Prog
         self.program = Prog(self.tokenizer)
         self.program.ParseProg()
-        print("Program Parsed")
     def Print(self):
         self.program.PrintProg(0)
     def Exec(self):
@@ -49,17 +47,9 @@ def main():
     filename = sys.argv[1]
     datastream = sys.argv[2]
 
-    if not os.path.exists(filename):
-        print(f"Error: '{filename}' is not a valid file path")
-        exit()
-
-    if not os.path.exists(datastream):
-        print(f"Error: '{datastream}' is not a valid file path")
-        exit()
-
     interp = Interpreter(filename=filename, datastream=datastream)
     interp.Parse()
-    # interp.Print()
+    interp.Print()
     interp.Exec()
 
 if __name__ == "__main__":

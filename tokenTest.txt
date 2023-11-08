@@ -1,15 +1,12 @@
-program  
-    int Z, Y;
-    int X;
-begin 
-    Y = 0;
-    read Z;
-    while (Z > Y) loop
-        if (Z != 3) then
-            write Z;
-        else
-            write X;
-        end;
-        Z = Z-1;
-    end;
+program
+int X1, X4;
+int X2, X3, X7;
+begin
+X1 = 0; X2 = 1; X3 = 1; read X4;
+write X7;
+while (X1<X4) loop
+                X7=X2+X3; X2=X3;
+                X3=X7; X1=X1+1;
+              end;
+write X2;
 end
