@@ -11,7 +11,7 @@ class Op:
         currToken = self.tokenizer.getToken()
         # <int> | <id> | (<exp>) are possible
         if currToken not in [31, 32, 20]:
-            print("Parse Error: Expected start of operation not found")
+            print("Parse Error: Expected int value, id, or expression")
             exit()
         
         if currToken == 31:

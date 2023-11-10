@@ -37,6 +37,7 @@ class Cond:
                 print("Parse Error: Expected && or || inbetween conditions")
                 exit()
             self.type = self.tokenizer.tokenName()
+            self.tokenizer.skipToken()
             self.cond2.ParseCond()
             #check and skip the ]
             if self.tokenizer.getToken() != 17:
@@ -69,10 +70,19 @@ class Cond:
             return self.comp.EvalComp(datapoints)
         elif self.cond2 is not None:
             cond1Value = self.cond1.EvalCond(datapoints)
-            cond2Value = self.cond2.EvalCond(datapoints)
             if self.type == "&&":
+                # We can short circuit the AND operation if the first condition is false
+                if not cond1Value:
+                    return False
+                    
+                cond2Value = self.cond2.EvalCond(datapoints)
                 return (cond1Value and cond2Value)
             elif self.type == "||":
+                # We can short circuit the OR operation if the first condition is true
+                if cond1Value:
+                    return True
+                
+                cond2Value = self.cond2.EvalCond(datapoints)
                 return (cond1Value or cond2Value)
         else:
             return (not self.cond1.EvalCond(datapoints))

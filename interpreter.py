@@ -2,6 +2,7 @@ import sys
 import os
 from tokenizer import Tokenizer
 
+# This class is not needed, but consolidates a lot of logic to keep main clean
 class Interpreter:
 
     def __init__(self, filename, datastream):
@@ -43,11 +44,8 @@ def main():
         print("Incorrect command line arguments.")
         print("Usage: python <script_name>.py <filename>")
         exit()
-
-    filename = sys.argv[1]
-    datastream = sys.argv[2]
-
-    interp = Interpreter(filename=filename, datastream=datastream)
+        
+    interp = Interpreter(filename=sys.argv[1], datastream=sys.argv[2])
     interp.Parse()
     interp.Print()
     interp.Exec()
