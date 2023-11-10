@@ -1,3 +1,7 @@
+# Eric Middlekamp
+# 11/10/23
+# CSE 3341
+
 import sys
 import os
 from tokenizer import Tokenizer
@@ -27,7 +31,7 @@ class Interpreter:
         with open(self.datastream, 'r') as file:
             for line in file:
                 try:
-                    # Try to convert the line to an integer
+                    # Try to convert the line to an integer. Throw an error if it can't
                     integer_value = int(line.strip())
                     self.datapoints.append(integer_value)
                 except ValueError:
