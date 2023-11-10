@@ -8,21 +8,26 @@ class Loop:
 
     def ParseLoop(self):
         from classes.stmt import StmtSeq
+        # Initialize the condition and the statement sequence
         self.cond = Cond(self.tokenizer)
         self.stmt_seq = StmtSeq(self.tokenizer)
 
+        # check and skip the 'while'
         if(self.tokenizer.getToken() != 8):
             print("Parse Error: Expected 'while' to start LOOP statement.")
             exit()
         self.tokenizer.skipToken()
 
+        # Parse the condition
         self.cond.ParseCond()
 
+        # Check for and skip the 'loop'
         if(self.tokenizer.getToken() != 9):
             print("Parse Error: Expected loop after conditional.")
             exit()
         self.tokenizer.skipToken()
 
+        # Parse the statement sequence
         self.stmt_seq.ParseStmtSeq()
 
         # Check and skip 'end' and ';'
@@ -37,15 +42,19 @@ class Loop:
         self.tokenizer.skipToken()
 
     def PrintLoop(self, currentTab):
+        # Print the 'while' at the current Tab
         tabs = '\t' * currentTab
         print(f"{tabs}while ", end='')
+        # Print the condition in line
         self.cond.PrintCond(0)
         # We want it to go to the next line here
         print(" loop") 
+        # Print statement sequence at an additional indent
         self.stmt_seq.PrintStmtSeq(currentTab + 1)
         print(f"{tabs}end;")
 
     def ExecLoop(self, datapoints):
+        # Execute the while loop based on evaluating the condition
         while self.cond.EvalCond(datapoints):
             self.stmt_seq.ExecStmtSeq(datapoints)
 

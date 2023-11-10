@@ -1,7 +1,6 @@
 
 class Exp:
     def __init__(self, tokenizer):
-        # types: none, add, sub
         self.tokenizer = tokenizer
         self.type = None
         self.fac = None
@@ -22,14 +21,19 @@ class Exp:
             self.exp.ParseExp()
 
     def PrintExp(self, currentTab):
+        # Print the expression in-line
         self.fac.PrintFac(currentTab, True)
+        # If the type is not none then we know we're in the second branch
         if self.type is not None:
             print(str(self.type), end='')
             self.exp.PrintExp(0)
 
     def ExecExp(self, datapoints):
+        # returns the value of the expression to the caller
+        # Get the value of the factor
         facValue = self.fac.ExecFac(datapoints)
         if self.type is not None:
+            # We are in the second branch, so we need to + or - that value with the expression
             expValue = self.exp.ExecExp(datapoints)
             if self.type == "+":
                 return facValue + expValue

@@ -152,6 +152,7 @@ class Tokenizer:
             self.tokenizeLine()
 
     def intVal(self):
+        # Get's the int value of the current int
         token_type, token_value = self.tokens[self.cursor_index]
         if token_type != 31:
             print("Error: Current token is not an integer.")
@@ -159,6 +160,7 @@ class Tokenizer:
         return int(token_value)
 
     def idName(self):
+        # Get's the Id name of the current Id
         token_type, token_value = self.tokens[self.cursor_index]
         if token_type != 32:
             print("Error: Current token is not an identifier.")
@@ -166,43 +168,17 @@ class Tokenizer:
         return token_value
     
     def tokenName(self):
+        # Gets the actual token string rather than the token number
         token_type, token_value = self.tokens[self.cursor_index]
         return token_value
     
     def get_error(self):
+        # Returns the error that the parser ran into
         token_type, token_value = self.tokens[self.cursor_index]
         if token_type != 34:
             print("Error: Current token is not an error.")
             exit()
         return token_value
-
-def main():
-    if len(sys.argv) != 2:
-        print("Incorrect command line arguments.")
-        print("Usage: python <script_name>.py <filename>")
-        exit()
-
-    filename = sys.argv[1]
-
-    if not os.path.exists(filename):
-        print(f"Error: '{filename}' is not a valid file path")
-        exit()
-
-    print(f"Tokenizing file: {filename}")
-    tokenizer = Tokenizer(filename)
-
-    while True:
-        token = tokenizer.getToken()
-        print(token)
-        if token in [33, 34]:
-            if token == 34:
-                print(tokenizer.get_error())
-            else:
-                print("End of file reached.")
-            break
-        tokenizer.skipToken()
-
-    tokenizer.file.close()
-
-if __name__ == "__main__":
-    main()
+    
+    def close_file(self):
+        self.file.close()

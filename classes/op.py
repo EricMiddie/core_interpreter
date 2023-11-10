@@ -9,7 +9,7 @@ class Op:
         self.value = None
     def ParseOp(self):
         currToken = self.tokenizer.getToken()
-        # <int> | <id> | (<exp>) are possible
+        # <int> | <id> | (<exp>) are possible so make sure we're starting with that token
         if currToken not in [31, 32, 20]:
             print("Parse Error: Expected int value, id, or expression")
             exit()
@@ -59,8 +59,11 @@ class Op:
 
     def EvalOp(self, datapoints):
         if self.type == 31:
+            # return the in value
             return int(self.value)
         elif self.type == 32:
+            # return the current value of the id
             return int(Id.GetIdValue(self.value))
         elif self.type == 20:
+            # return the expressions value
             return self.value.ExecExp(datapoints)

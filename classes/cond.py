@@ -10,32 +10,36 @@ class Cond:
         self.cond2 = None
 
     def ParseCond(self):
-        # print("Parsing Cond")
         # Can start with (, !, [
         # type will either be (, !, && or ||. We know && and || start with [
         if self.tokenizer.getToken() not in [20, 15, 16]:
             print("Parse Error: Expected condition starting with (, !, or [")
             exit()
         if self.tokenizer.getToken() == 20:
+            # Store the type and parse the comp
             self.type = self.tokenizer.getToken()
             self.comp = Comp(self.tokenizer)
             self.comp.ParseComp()
         elif self.tokenizer.getToken() == 15:
+            #store the type and parse the cond
             self.type = self.tokenizer.getToken()
             self.cond1 = Cond(self.tokenizer)
             # skip the !
             self.tokenizer.skipToken()
             self.cond1.ParseCond()
         elif self.tokenizer.getToken() == 16:
+            # Store the type and parse two conds
             self.cond1 = Cond(self.tokenizer)
             self.cond2 = Cond(self.tokenizer)
             # skip the [
             self.tokenizer.skipToken()
 
             self.cond1.ParseCond()
+            # Check that there is a && or ||
             if self.tokenizer.getToken() not in [18, 19]:
                 print("Parse Error: Expected && or || inbetween conditions")
                 exit()
+            # Store the token name and parse the second condition
             self.type = self.tokenizer.tokenName()
             self.tokenizer.skipToken()
             self.cond2.ParseCond()
@@ -66,6 +70,7 @@ class Cond:
             print(")", end='')
 
     def EvalCond(self, datapoints):
+        # Check what branch we're in by seeing which is still "None"
         if self.comp is not None:
             return self.comp.EvalComp(datapoints)
         elif self.cond2 is not None:

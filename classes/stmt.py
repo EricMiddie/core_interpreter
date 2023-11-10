@@ -11,11 +11,13 @@ class Stmt:
         self.value = None
 
     def ParseStmt(self):
+        # Make sure that we have a valid start to a statement sequence, don't skip the token
         if self.tokenizer.getToken() not in [32, 5, 8, 10, 11]:
             print("Parse Error: Expected start of statement")
             exit()
         curToken = self.tokenizer.getToken()
         self.type = curToken
+        # Depending on the token, init the child and parse it
         if curToken == 32:
             self.value = Assign(self.tokenizer)
             self.value.ParseAssign()
@@ -33,6 +35,7 @@ class Stmt:
             self.value.ParseOut()
 
     def PrintStmt(self, currentTab):
+        # Check the type of the statement and then call the print function for that type
         if type(self.value) is Assign:
             self.value.PrintAssign(currentTab)
         elif type(self.value) is If:
@@ -45,6 +48,7 @@ class Stmt:
             self.value.PrintOut(currentTab)
 
     def ExecStmt(self, datapoints):
+        # Check the type of the statement and then call the Exec function for that type
         if type(self.value) is Assign:
             self.value.ExecAssign(datapoints)
         elif type(self.value) is If:
@@ -71,17 +75,21 @@ class StmtSeq:
         if self.tokenizer.getToken() not in [32, 5, 8, 10, 11]:
                 print("Error: Expected start of statement sequence")
                 exit()
+        # Parse the statement
         self.stmt.ParseStmt()
+        # Check if we have another statement in the statement sequence
         if self.tokenizer.getToken() in [32, 5, 8, 10, 11]:
             self.stmt_seq = StmtSeq(self.tokenizer)
             self.stmt_seq.ParseStmtSeq()
 
     def PrintStmtSeq(self, currentTab):
+        # Print the statement and check if we have another statement sequence to print
         self.stmt.PrintStmt(currentTab)
         if self.stmt_seq is not None:
             self.stmt_seq.PrintStmtSeq(currentTab)
 
     def ExecStmtSeq(self, datapoints):
+        # Execute the statement and check if we have another statement sequence to execute
         self.stmt.ExecStmt(datapoints)
         if self.stmt_seq is not None:
             self.stmt_seq.ExecStmtSeq(datapoints)

@@ -38,6 +38,7 @@ class Prog:
 
 
     def PrintProg(self, currentTab):
+        # Print the program with the declaration sequence and statement sequence indented one line
         print("program")
         self.decl_seq.PrintDeclSeq(currentTab + 1)
         print("begin")
@@ -45,6 +46,7 @@ class Prog:
         print("end")
 
     def ExecProg(self, datapoints):
+        # Execute the declaration and statement sequences
         self.decl_seq.ExecDeclSeq(datapoints)
         self.stmt_seq.ExecStmtSeq(datapoints)
 

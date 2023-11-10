@@ -19,15 +19,20 @@ class Fac:
             self.fac.ParseFac()
 
     def PrintFac(self, currenTab, inLine):
+        # Print the operation
         self.op.PrintOp(currenTab, inLine)
+        # Check if the fac is none, print the factor if it is
         if self.fac is not None:
             print(" * ", end='' if inLine else '\n')
             self.fac.PrintFac(currenTab, inLine)
 
     def ExecFac(self, datapoints):
+        # Evaluate the value of the operation
         opValue = self.op.EvalOp(datapoints)
         if self.fac is not None:
+            # If the fac is not none, then return the multiplication of the fac and the op
             facValue = self.fac.ExecFac(datapoints)
             return opValue * facValue
         else:
+            # return the op value
             return opValue

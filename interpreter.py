@@ -25,18 +25,27 @@ class Interpreter:
 
         # reads the datastream into the interpreter
         with open(self.datastream, 'r') as file:
-            lines = file.readlines()
-        self.datapoints = [line.strip() for line in lines]
-
+            for line in file:
+                try:
+                    # Try to convert the line to an integer
+                    integer_value = int(line.strip())
+                    self.datapoints.append(integer_value)
+                except ValueError:
+                    print(f"Error: Ensure that your data is one integer value per line in {self.datastream}.")
+                    exit()
         self.tokenizer = Tokenizer(filename=self.filename)
 
     def Parse(self):
+        # Creates the program object and calls the Parse method
         from classes.prog import Prog
         self.program = Prog(self.tokenizer)
         self.program.ParseProg()
+        self.tokenizer.close_file()
     def Print(self):
+        # Pretty Prints the program
         self.program.PrintProg(0)
     def Exec(self):
+        # Executes the program
         self.program.ExecProg(self.datapoints)
 
 def main():
@@ -45,6 +54,7 @@ def main():
         print("Usage: python <script_name>.py <filename>")
         exit()
         
+    
     interp = Interpreter(filename=sys.argv[1], datastream=sys.argv[2])
     interp.Parse()
     interp.Print()

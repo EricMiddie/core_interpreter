@@ -5,15 +5,50 @@ Files that I am submitting:
     This file contains the core tokenizer and parser logic, including the main method to run the program.
 - tokenTest.txt
     This file was where I was inputting my test programs to make sure that the tokenizer was working correctly.
+- datapoints.txt
+    This is the file that I was putting the program's data points into
+- interpreter.py
+    The main file of the program. Contains the interpreter class that is called by the main function (to make main cleaner)
+- classes/assign.py
+    Contains the Assign class and the related Parse, Print, and Execute functions
+- classes/comp.py
+    Contains the Comp class and the related Parse, Print, and Execute functions
+- classes/compop.py
+    Contains the CompOp class and the related Parse, Print, and Execute functions
+- classes/cond.py
+    Contains the Cond class and the related Parse, Print, and Execute functions
+- classes/decl.py
+    Contains the Decl class and DeclSeq class the related Parse, Print, and Execute functions
+- classes/exp.py
+    Contains the Exp class and the related Parse, Print, and Execute functions
+- classes/fac.py
+    Contains the Fac class and the related Parse, Print, and Execute functions
+- classes/iden.py
+    Contains the "static" ID class and the resulting methods to add, modify, and access ID values and the IdList class to parse, print, and execute ID lists of varying kinds
+- classes/If.py
+    Contains the If class and the related Parse, Print, and Execute functions
+- classes/io.py
+    Contains the In and Out classes and the related Parse, Print, and Execute functions
+- classes/loop.py
+    Contains the Loop class and the related Parse, Print, and Execute functions
+- classes/op.py
+    Contains the Op class and the related Parse, Print, and Execute functions
+- classes/prog.py
+    Contains the Program class and the related Parse, Print, and Execute functions
+- classes/stmt.py
+    Contains the Stmt and StmtSeq classes and the related Parse, Print, and Execute functions
 
 Instructions: 
 
-This is a python implementation of the tokenizer so a valid python interpreter is needed. To run this, I was using venv
+This is a python implementation of the Core interpreter so a valid python interpreter is needed. To run this, I was using venv
 and python version 3.11.5. I will include the .venv files in the submission so that the only thing needed is to type
-"python tokenizer.py <filename>" where <filename> is replaced by whatever file you want to tokenize.
+"python interpreter.py <core_filename> <data_filename>" where <filename> is replaced by the Core program that you want to run
+and <data_filename> is replaced with the file containing the data for that program. If running on Mac, you may need to replace "python"
+"python3"
 
-For example: python tokenizer.py tokenTest.txt
+For example: python interpreter.py tokenTest.txt datapoints.txt (Windows)
+             python3 interpreter.py tokenTest.txt datapoints.txt (Mac)
 
-This will run the script on the test program.
+This will run the script on the test program. Which is defaulted to the first test program given on Piazza as well as an example of a multi condition COND.
 
 email: middlekamp.3@osu.edu
