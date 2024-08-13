@@ -1,4 +1,4 @@
-Files that I am submitting: 
+Files and their functionality: 
 - .venv
     this is a folder containing a python virtual environment, including the interpreter.
 - tokenizer.py
@@ -50,5 +50,3 @@ For example: python interpreter.py tokenTest.txt datapoints.txt (Windows)
              python3 interpreter.py tokenTest.txt datapoints.txt (Mac)
 
 This will run the script on the test program. Which is defaulted to the first test program given on Piazza as well as an example of a multi condition COND.
-
-email: middlekamp.3@osu.edu
